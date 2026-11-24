@@ -1,5 +1,5 @@
 from copy import deepcopy
-from app.config import REQUIRED,NUMERIC,DATES,TIMES
+from app.config import REQUIRED,NUMERIC,OPTIONAL_NUMERIC,DATES,TIMES
 from app.errors import DomainError
 from app.modules.m2_mapping.coerce import number,day,instant,SENTINELS
 
@@ -12,6 +12,10 @@ def normalize(state):
             item=dict(row)
             for field in NUMERIC:
                 if field in item and item[field] != '':item[field]=number(item[field])
+            for field in OPTIONAL_NUMERIC:
+                if field in item:
+                    if str(item[field]).strip().upper() in SENTINELS:item[field]=''
+                    else:item[field]=number(item[field])
             for field in DATES:
                 if field in item and item[field] != '':item[field]=day(item[field])
             for field in TIMES:

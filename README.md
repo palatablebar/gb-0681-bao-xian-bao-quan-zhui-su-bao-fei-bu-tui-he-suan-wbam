@@ -8,7 +8,7 @@
 docker compose up --build -d
 ```
 
-访问 http://localhost:18250 。初次启动自动运行脏样例，可切换 clean.csv 与 legacy.csv。顶部“运行批次”会重新计算，同源输入复用批次。
+访问 http://localhost:18250 。初次启动自动运行脏样例，可切换 clean.csv、legacy.csv 与 subsidy.csv。顶部“运行批次”会重新计算，同源输入复用批次。
 
 ## 业务模块
 
@@ -22,7 +22,7 @@ docker compose up --build -d
 
 ## 核心规则
 
-按保全有效日拆分责任区间，撤销回滚指向原变更；实收补退按日精确分配尾差。完整数值、边界和异常定义见 `docs/DATA-DICTIONARY.md`。
+按保全有效日拆分责任区间，撤销回滚指向原变更；实收补退按日精确分配尾差。追溯减保产生的退款按原缴费中个人与财政补贴的实收占比唯一分账，补贴凭证未到齐时整笔挂账为未分配余额。完整数值、边界和异常定义见 `docs/DATA-DICTIONARY.md`。
 
 ## 验证
 
